@@ -1,0 +1,1 @@
+conda create -n SanitizeMe python=3.6.9 gooey colored minimap2 samtools -y
