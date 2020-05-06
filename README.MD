@@ -63,7 +63,7 @@ sudo apt install git
 git clone https://github.com/jiangweiyao/SanitizeMe
 ```
 
-## Install Miniconda (if no Conda is install on system).
+## Install Miniconda (if no Conda is installed on system).
 Detailed instruction on the the Miniconda website for installing and configuring Miniconda:
 https://conda.io/projects/conda/en/latest/user-guide/install/linux.html
 
@@ -73,7 +73,7 @@ You can run the prepackaged script `install_miniconda.sh` in the repository to i
 ```
 
 ## Install Miniconda, Download human_g1k_v37, and build conda environment
-You can do all three things by using the following command.
+You can do all three things by using the following command assuming repository is downloaded into your home directory.
 ```
 . ~/SanitizeMe/install_all.sh
 ```
@@ -104,7 +104,6 @@ CLI generic usage
 ```
 ~/SanitizeMe/SanitizeMe_CLI.py -i <input directory contain fastq> -r <reference fasta/fasta.gz> -o <output location>
 ```
-
 
 When you are finished running the workflow, exit out of your environment by running `conda deactivate`. Deactivating your environment exits out of your current environment and protects it from being modified by other programs. You can build as many environments as you want and enter and exit out of them. Each environment is separate from each other to prevent version or dependency clashes. The author recommends using Conda/Bioconda to manage your dependencies.
 
