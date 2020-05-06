@@ -4,7 +4,7 @@ SanitizeMe is a GUI application (with an equivalent CLI) that takes fastq files,
 
 ![Image description](https://github.com/jiangweiyao/SanitizeMe/blob/master/SanitizeMePaired_Screenshot2.jpg)
 
-## Quick Installation:
+## Quick Installation and Use:
 
 SanitizeMe (and all the dependencies) can also be installed via Conda:  
 https://bioconda.github.io/recipes/sanitizeme/README.html  
@@ -13,11 +13,33 @@ To create a new conda environment (called SanitizeMe) and install SanitizeMe int
 conda create -n SanitizeMe sanitizeme -y
 ```
 
-SanitizeMe uses Minimap2 to map to the reference sequence and samtools to pull out the reads that did not map. SanitizeMe also depends on Python 3, and the Gooey and colored modules (for the GUI interface) as well as Minimap2 and Samtools. SanitizeMe also includes a Conda recipe to install these environmental dependencies (Minimap2, Samtools, Python 3.6.9, and the Gooey/colored modules) in an easy and reproducible method using Miniconda/Anaconda.
+Activate the Conda environment using the following command:
+```
+conda activate SanitizeMe
+```
+
+Run one of the SanitizeMe versions via one of the following commands:
+```
+SanitizeMe_GUI.py
+SanitizeMe_CLI.py
+SanitizeMePaired_GUI.py
+SanitizeMePaired_CLI.py
+```
+
+Deactivate the Conda environment after you run (to protect the environment from clashing with other programs)
+```
+conda deactivate
+```
+
+## Dependencies:
+
+SanitizeMe uses Minimap2 to map to the reference sequence and samtools to pull out the reads that did not map. SanitizeMe also depends on Python 3, and the Gooey and colored modules (for the GUI interface). Everything can be install in one line using Conda as described above. SanitizeMe also includes a Conda recipe to install these environmental dependencies (Minimap2, Samtools, Python 3.6.9, and the Gooey/colored modules) in an easy and reproducible method using Miniconda/Anaconda. 
 
 A script for easy installation of Miniconda is included (install_miniconda.sh).
 
 A script to install Miniconda, download the human_g1k_v37 reference file, and build the environment is also included (install_all.sh). 
+
+
 
 ## Summary - Installation 
 1. Clone Repository 
