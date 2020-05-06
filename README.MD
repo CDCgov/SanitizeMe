@@ -42,7 +42,7 @@ with the following command
 wget ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
 ```
 
-You can use any host fasta or fasta.gz format reference file for this tool.
+You can use any fasta or fasta.gz format host reference file for this tool.
 
 ## Dependencies:
 
@@ -78,31 +78,26 @@ You can do all three things by using the following command assuming repository i
 . ~/SanitizeMe/install_all.sh
 ```
 
-## Run the code.
+## Sample Usage.
 
 Activating your environment makes the software you installed in that environment available for use. You will see "(SanitizeMe)" in front of bash after activation.
 ```
 conda activate SanitizeMe
 ```
 
-Run the GUI version with the following command. A folder containing test fastq files is included in the SanitizeMe/test/ directory. The human_g1k_v37 reference file is downloaded by the `install_all.sh file`. Increase or decrease the number of threads to use as well as select your long read technology. Then, hit `Start` to run the program. 
+Run the GUI version with the following command. A folder containing test fastq files is included in the SanitizeMe/test/ directory from the repo. The human_g1k_v37 reference file is downloaded by the `install_all.sh file`. Increase or decrease the number of threads to use as well as select your long read technology. Then, hit `Start` to run the program. 
 ```
-~/SanitizeMe/SanitizeMe_GUI.py
+SanitizeMe_GUI.py
 ```
 
-Run the CLI version with the test files with the following command
+Run the CLI version with the test files with the following command assuming the repo was cloned into your home directory and reference file is in the repo folder. Change as appropriate.
 ```
- ~/SanitizeMe/SanitizeMe_CLI.py -i SanitizeMe/test/ -r ~/SanitizeMe/human_g1k_v37.fasta.gz -o ~/dehost_output/test_paired_CLI
+SanitizeMe_CLI.py -i ~/SanitizeMe/test/ -r ~/SanitizeMe/human_g1k_v37.fasta.gz -o ~/dehost_output/test_CLI
 ```
 
 Get help for the CLI version with the following command
 ```
-~/SanitizeMe/SanitizeMe_CLI.py -h
-```
-
-CLI generic usage
-```
-~/SanitizeMe/SanitizeMe_CLI.py -i <input directory contain fastq> -r <reference fasta/fasta.gz> -o <output location>
+SanitizeMe_CLI.py -h
 ```
 
 When you are finished running the workflow, exit out of your environment by running `conda deactivate`. Deactivating your environment exits out of your current environment and protects it from being modified by other programs. You can build as many environments as you want and enter and exit out of them. Each environment is separate from each other to prevent version or dependency clashes. The author recommends using Conda/Bioconda to manage your dependencies.
