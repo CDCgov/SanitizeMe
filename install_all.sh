@@ -14,4 +14,4 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 wget ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz -P ~/SanitizeMe/ 
 
-conda env create -f ~/SanitizeMe/environment.yml
+conda create -n SanitizeMe sanitizeme -y
