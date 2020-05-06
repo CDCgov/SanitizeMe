@@ -4,13 +4,16 @@ SanitizeMe is a GUI application (with an equivalent CLI) that takes fastq files,
 
 ![Image description](https://github.com/jiangweiyao/SanitizeMe/blob/master/SanitizeMePaired_Screenshot2.jpg)
 
-SanitizeMe (and all the dependencies) can also be installed via Conda:
-https://bioconda.github.io/recipes/sanitizeme/README.html
+## Quick Installation:
+
+SanitizeMe (and all the dependencies) can also be installed via Conda:  
+https://bioconda.github.io/recipes/sanitizeme/README.html  
+To create a new conda environment (called SanitizeMe) and install SanitizeMe into the environment:  
+```
+conda create -n SanitizeMe sanitizeme -y
+```
 
 SanitizeMe uses Minimap2 to map to the reference sequence and samtools to pull out the reads that did not map. SanitizeMe also depends on Python 3, and the Gooey and colored modules (for the GUI interface) as well as Minimap2 and Samtools. SanitizeMe also includes a Conda recipe to install these environmental dependencies (Minimap2, Samtools, Python 3.6.9, and the Gooey/colored modules) in an easy and reproducible method using Miniconda/Anaconda.
-
-
-
 
 A script for easy installation of Miniconda is included (install_miniconda.sh).
 
