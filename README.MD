@@ -35,8 +35,8 @@ conda deactivate
 ```
 
 ## Download Reference Files
-The human_g1k_v37 reference file has been use to remove human reads from metagenomic samples. It can be downloaded from the link below:
-ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
+The human_g1k_v37 reference file has been use to remove human reads from metagenomic samples. It can be downloaded from the link below:  
+ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz  
 with the following command
 ```
 wget ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
