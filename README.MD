@@ -4,7 +4,7 @@ SanitizeMe is a GUI application (with an equivalent CLI) that takes fastq files,
 
 ![Image description](https://github.com/jiangweiyao/SanitizeMe/blob/master/SanitizeMePaired_Screenshot2.jpg)
 
-## Quick Installation and Use:
+## Quick Installation via Conda and Use:
 
 SanitizeMe (and all the dependencies) can also be installed via Conda:  
 https://bioconda.github.io/recipes/sanitizeme/README.html  
@@ -18,15 +18,18 @@ Activate the Conda environment using the following command:
 conda activate SanitizeMe
 ```
 
-Run one of the SanitizeMe versions via one of the following commands:
+Run the GUI version of SanitizeMe or SanitizePaired:
 ```
 SanitizeMe_GUI.py
-SanitizeMe_CLI.py
 SanitizeMePaired_GUI.py
+```
+Run the CLI version of SanitizeMe or SanitizePaired to see usage:
+```
+SanitizeMe_CLI.py
 SanitizeMePaired_CLI.py
 ```
 
-Deactivate the Conda environment after you run (to protect the environment from clashing with other programs)
+Deactivate the Conda environment after you are finished (to protect the environment from clashing with other programs):
 ```
 conda deactivate
 ```
@@ -38,8 +41,6 @@ SanitizeMe uses Minimap2 to map to the reference sequence and samtools to pull o
 A script for easy installation of Miniconda is included (install_miniconda.sh).
 
 A script to install Miniconda, download the human_g1k_v37 reference file, and build the environment is also included (install_all.sh). 
-
-
 
 ## Summary - Installation 
 1. Clone Repository 
