@@ -1,14 +1,16 @@
 # Remove Host DNA from Reads Using Minimap2 and Samtools 
 
-SanitizeMe is a GUI application (with an equivalent CLI) that takes fastq files, and removes reads mapping to a reference file from the fastq. The most obvious use is to remove the host contaminants from metagenomic sequencing. The GUI version requires direct access to a linux computer or X11 forwarding.
-
-SanitizeMePaired is a similar GUI application (with an equivalent CLI) that processes paired end fastq files.
+SanitizeMe is a GUI application (with an equivalent CLI) that takes fastq files, and removes reads mapping to a reference file from the fastq. The most obvious use is to remove the host contaminants from DNA sequencing. The GUI version requires direct access to a linux computer or X11 forwarding (I use VcXsrv). SanitizeMePaired is the sister application (with GUI and CLI versions) that processes paired end fastq files.
 
 ![Image description](https://github.com/jiangweiyao/SanitizeMe/blob/master/SanitizeMePaired_Screenshot2.jpg)
 
-It uses Minimap2 to map to the reference sequence and samtools to pull out the reads that did not map.
+SanitizeMe (and all the dependencies) can also be installed via Conda:
+https://bioconda.github.io/recipes/sanitizeme/README.html
 
-SanitizeMe depends on Python 3.6.9 and the Gooey and colored modules (for the GUI interface) as well as Minimap2 and Samtools. SanitizeMe includes a Conda recipe to install these environmental dependencies (Minimap2, Samtools, Python 3.6.9, and the Gooey/colored modules) in an easy and reproducible fashion using Miniconda/Anaconda.
+SanitizeMe uses Minimap2 to map to the reference sequence and samtools to pull out the reads that did not map. SanitizeMe also depends on Python 3, and the Gooey and colored modules (for the GUI interface) as well as Minimap2 and Samtools. SanitizeMe also includes a Conda recipe to install these environmental dependencies (Minimap2, Samtools, Python 3.6.9, and the Gooey/colored modules) in an easy and reproducible method using Miniconda/Anaconda.
+
+
+
 
 A script for easy installation of Miniconda is included (install_miniconda.sh).
 
