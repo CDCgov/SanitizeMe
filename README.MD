@@ -4,7 +4,7 @@ SanitizeMe is a GUI application (with an equivalent CLI) that takes fastq files,
 
 ![Image description](https://github.com/jiangweiyao/SanitizeMe/blob/master/SanitizeMePaired_Screenshot2.jpg)
 
-## Quick Installation via Conda and Use:
+## Quick Installation via Conda and Usage:
 
 SanitizeMe (and all the dependencies) can also be installed via Conda:  
 https://bioconda.github.io/recipes/sanitizeme/README.html  
@@ -25,14 +25,24 @@ SanitizeMePaired_GUI.py
 ```
 Run the CLI version of SanitizeMe or SanitizePaired to see usage:
 ```
-SanitizeMe_CLI.py
-SanitizeMePaired_CLI.py
+SanitizeMe_CLI.py -h
+SanitizeMePaired_CLI.py -h
 ```
 
 Deactivate the Conda environment after you are finished (to protect the environment from clashing with other programs):
 ```
 conda deactivate
 ```
+
+## Download Reference Files
+The human_g1k_v37 reference file has been use to remove human reads from metagenomic samples. It can be downloaded from the link below:
+ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
+with the following command
+```
+wget ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
+```
+
+You can use any host fasta or fasta.gz format reference file for this tool.
 
 ## Dependencies:
 
@@ -42,73 +52,31 @@ A script for easy installation of Miniconda is included (install_miniconda.sh).
 
 A script to install Miniconda, download the human_g1k_v37 reference file, and build the environment is also included (install_all.sh). 
 
-## Summary - Installation 
-1. Clone Repository 
-2. Install Conda if not already in environment
-3. Create conda environment
-4. Acquire reference file - download the human_g1k_v37 reference file using the following command
-```
-wget ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
-```
-
-## Summary - How to run after installation.
-1. Activate conda environment - `conda activate SanitizeMe`
-2. Run GUI version - `~/SanitizeMe/SanitizeMe_GUI.py`
-3. Or run CLI version - `~/SanitizeMe/SanitizeMe_CLI.py -h`
-4. Deactivate conda environment - `conda deactivate` when finished to protect your conda environment
-
-## Clone this code using GIT
-
-### Install git for Debian systems using the following command (if necessary)
+## Install git for Debian systems using the following command (if necessary)
 ```
 sudo apt update
 sudo apt install git
 ```
 
-##Installation directions 
-These instructions install the code into your home path. Change the instructions if appropriate. 
-
-### Clone the code from repository
+## Clone the code from repository
 ```
-cd ~
 git clone https://github.com/jiangweiyao/SanitizeMe
 ```
 
-### Install Miniconda, Download human_g1k_v37, and build conda environment
-You can do all three things by using the following command. Then, you can skip the next 3 sections.
-```
-. ~/SanitizeMe/install_all.sh
-```
+## Install Miniconda (if no Conda is install on system).
+Detailed instruction on the the Miniconda website for installing and configuring Miniconda:
+https://conda.io/projects/conda/en/latest/user-guide/install/linux.html
 
-### Install Miniconda (if no Conda is install on system). 
-You can run the prepackaged script install_miniconda.sh to install into your home directory (recommended) by using the following command
+You can run the prepackaged script `install_miniconda.sh` in the repository to install into your home directory (recommended) by using the following command assuming SanitizeMe is downloaded into your home directory:
 ```
 . ~/SanitizeMe/install_miniconda.sh
 ```
 
-Detailed instruction on the the Miniconda website if anything goes wrong:
-https://conda.io/projects/conda/en/latest/user-guide/install/linux.html
-
-### Clone the environment. Need to do once.
-
-We use conda to create an environment (that we can activate and deactivate) to install our dependent software and resolve their dependencies. This environment is called "SanitizeMe". The following command assumes your environment file is in your home path. Modify as appropriate.
-
+## Install Miniconda, Download human_g1k_v37, and build conda environment
+You can do all three things by using the following command.
 ```
-conda env create -f ~/SanitizeMe/environment.yml
+. ~/SanitizeMe/install_all.sh
 ```
-
-The command to generate the environment originally is in the included `MakeCondaEnv.txt` file. 
-
-## Download Reference Files
-The human_g1k_v37 reference file can be downloaded from the link below:
-ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
-with the following command
-```
-wget ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
-```
-
-You can use any fasta or fasta.gz format reference file for this tool.
-
 
 ## Run the code.
 
@@ -139,12 +107,6 @@ CLI generic usage
 
 
 When you are finished running the workflow, exit out of your environment by running `conda deactivate`. Deactivating your environment exits out of your current environment and protects it from being modified by other programs. You can build as many environments as you want and enter and exit out of them. Each environment is separate from each other to prevent version or dependency clashes. The author recommends using Conda/Bioconda to manage your dependencies.
-
-## Reference Files
-The human_g1k_v37 reference file from NCBI is downloaded by the `install_all.sh` file . It was downloaded from: 
-ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/human_g1k_v37.fasta.gz
-
-You can use any fasta or fasta.gz format reference file for SanitizeMe. 
 
 ## What the code is actually doing
 A log of the commands being run are in the results directory under cmd.log. You can view what commands are being executed.
