@@ -32,9 +32,9 @@ def main():
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
         if args.LargeReference:
-            minimap2_cmd = f"minimap2 --split-prefix index_name -ax {seq_method} {args.Reference} {i} -t {args.threads} > {OutputFolder}/{base}.sam"
+            minimap2_cmd = f"minimap2 --split-prefix index_name -ax {args.seq_method} {args.Reference} {i} -t {args.threads} > {OutputFolder}/{base}.sam"
         else:
-            minimap2_cmd = f"minimap2 -ax {seq_method} {args.Reference} {i} -t {args.threads} > {OutputFolder}/{base}.sam"
+            minimap2_cmd = f"minimap2 -ax {args.seq_method} {args.Reference} {i} -t {args.threads} > {OutputFolder}/{base}.sam"
 
         f.write(minimap2_cmd+'\n')
         os.system(minimap2_cmd)
