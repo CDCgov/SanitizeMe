@@ -16,6 +16,7 @@ def main():
     required_args = cli.add_argument_group("Input Output", gooey_options={'show_border': True, 'columns': 1})
     required_args.add_argument('--InputFolder', help="Folder containing paired fq, fq.gz, fastq, and fastq.gz files. Program will recursively find paired reads", required=True, widget='DirChooser')
     required_args.add_argument('--Reference', help="Host Reference fasta or fasta.gz file", required=True, widget='FileChooser')
+    required_args.add_argument('--LargeReference', help = "Use this option if your reference file is greater than 4 Gigabases", required=False, widget='BlockCheckbox', action='store_true', gooey_options={ 'checkbox_label': "Yes" })
     required_args.add_argument('--OutputFolder', help="Output Folder", required=False, default='~/dehost_output/test')
 
     parser = cli.add_argument_group("Options", gooey_options={'show_border': True,'columns': 1})
@@ -41,7 +42,11 @@ def main():
         base = os.path.splitext(os.path.basename(for_files[i]))[0]
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
-        minimap2_cmd = f"minimap2 -ax sr {args.Reference} {for_files[i]} {rev_files[i]} -t {args.threads} > {OutputFolder}/{base}.sam"
+
+        if args.LargeReference:
+            minimap2_cmd = f"minimap2 -ax sr {args.Reference} {for_files[i]} {rev_files[i]} -t {args.threads} --split-prefix index_name > {OutputFolder}/{base}.sam"
+        else:
+            minimap2_cmd = f"minimap2 -ax sr {args.Reference} {for_files[i]} {rev_files[i]} -t {args.threads} > {OutputFolder}/{base}.sam"
         f.write(minimap2_cmd+'\n')
         os.system(minimap2_cmd)
         samtools_cmd1 = f"samtools view -u -f 4 {OutputFolder}/{base}.sam > {OutputFolder}/{base}_filtered.sam"

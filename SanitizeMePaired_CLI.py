@@ -13,7 +13,7 @@ def main():
     cli.add_argument('-i', '--InputFolder', help="Folder containing paired fq, fq.gz, fastq, and fastq.gz files. Program will recursively find paired reads", required=True)
     cli.add_argument('-r', '--Reference', help="Host Reference fasta or fasta.gz file", required=True)
     cli.add_argument('-o', '--OutputFolder', help="Output Folder. Default is ~/dehost_output/test", required=False, default='~/dehost_output/test')
-
+    cli.add_argument('--LargeReference', help = "Use this option if your reference file is greater than 4 Gigabases", required=False, action='store_true')
     cli.add_argument('-t', '--threads', help="Number of threads. More is faster if your computer supports it", type=int, required=False, default=4)
 
     args = cli.parse_args()
@@ -36,7 +36,11 @@ def main():
         base = os.path.splitext(os.path.basename(for_files[i]))[0]
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
-        minimap2_cmd = f"minimap2 -ax sr {args.Reference} {for_files[i]} {rev_files[i]} -t {args.threads} > {OutputFolder}/{base}.sam"
+        if args.LargeReference:
+            minimap2_cmd = f"minimap2 -ax sr {args.Reference} {for_files[i]} {rev_files[i]} -t {args.threads} --split-prefix index_name > {OutputFolder}/{base}.sam"
+        else:
+            minimap2_cmd = f"minimap2 -ax sr {args.Reference} {for_files[i]} {rev_files[i]} -t {args.threads} > {OutputFolder}/{base}.sam"
+
         f.write(minimap2_cmd+'\n')
         os.system(minimap2_cmd)
         samtools_cmd1 = f"samtools view -u -f 4 {OutputFolder}/{base}.sam > {OutputFolder}/{base}_filtered.sam"

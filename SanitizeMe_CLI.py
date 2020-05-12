@@ -12,7 +12,7 @@ def main():
     cli.add_argument('-i', '--InputFolder', help="Folder containing fastq files. Only files ending in .fq, .fg.gz, .fastq, and .fastq.gz will be processed", required=True)
     cli.add_argument('-r', '--Reference', help="Host Reference fasta or fasta.gz file", required=True)
     cli.add_argument('-o', '--OutputFolder', help="Output Folder. Default is ~/dehost_output/test", required=False, default='~/dehost_output/test')
-
+    cli.add_argument('--LargeReference', help = "Use this option if your reference file is greater than 4 Gigabases", required=False, action='store_true')
     cli.add_argument('-t', '--threads', help="Number of threads. Default is 4. More is faster if your computer supports it", type=int, required=False, default=4)
     method = cli.add_mutually_exclusive_group()
     method.add_argument('--Nanopore', help="Select if you used Nanopore Sequencing", action='store_const', dest='seq_method', const='map-ont', default='map-ont')
@@ -31,7 +31,11 @@ def main():
         base = os.path.splitext(os.path.basename(i))[0]
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
-        minimap2_cmd = f"minimap2 -ax {args.seq_method} {args.Reference} {i} -t {args.threads} > {OutputFolder}/{base}.sam"
+        if args.LargeReference:
+            minimap2_cmd = f"minimap2 --split-prefix index_name -ax {seq_method} {args.Reference} {i} -t {args.threads} > {OutputFolder}/{base}.sam"
+        else:
+            minimap2_cmd = f"minimap2 -ax {seq_method} {args.Reference} {i} -t {args.threads} > {OutputFolder}/{base}.sam"
+
         f.write(minimap2_cmd+'\n')
         os.system(minimap2_cmd)
         samtools_cmd1 = f"samtools view -u -f 4 {OutputFolder}/{base}.sam > {OutputFolder}/{base}_filtered.sam"
