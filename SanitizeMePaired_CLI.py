@@ -6,13 +6,17 @@ import glob
 import re
 from colored import stylize, attr, fg
 import argparse 
+from datetime import date
 
 def main():
+
+    now = date.today()
+
     cli = argparse.ArgumentParser()
 
     cli.add_argument('-i', '--InputFolder', help="Folder containing paired fq, fq.gz, fastq, and fastq.gz files. Program will recursively find paired reads", required=True)
     cli.add_argument('-r', '--Reference', help="Host Reference fasta or fasta.gz file", required=True)
-    cli.add_argument('-o', '--OutputFolder', help="Output Folder. Default is ~/dehost_output/test", required=False, default='~/dehost_output/test')
+    cli.add_argument('-o', '--OutputFolder', help=f"Output Folder. Default is ~/dehost_output/dehost_{now}", required=False, default=f"~/dehost_output/dehost_{now}")
     cli.add_argument('--LargeReference', help = "Use this option if your reference file is greater than 4 Gigabases", required=False, action='store_true')
     cli.add_argument('-t', '--threads', help="Number of threads. More is faster if your computer supports it", type=int, required=False, default=4)
 
@@ -34,6 +38,7 @@ def main():
         #print(rev_files[i])
 
         base = os.path.splitext(os.path.basename(for_files[i]))[0]
+        base = os.path.splitext(base)[0]
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
         if args.LargeReference:

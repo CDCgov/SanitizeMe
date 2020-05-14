@@ -5,6 +5,7 @@ import os
 import glob
 import re
 from colored import stylize, attr, fg
+from datetime import date
 from gooey import Gooey, GooeyParser
 
 @Gooey(default_size=(750, 820), richtext_controls=True,
@@ -12,12 +13,14 @@ from gooey import Gooey, GooeyParser
        progress_expr="current / total * 100")
 
 def main():
+    now = date.today()
+
     cli = GooeyParser(description="Remove Host Reads from Paired End Short Reads")
     required_args = cli.add_argument_group("Input Output", gooey_options={'show_border': True, 'columns': 1})
     required_args.add_argument('--InputFolder', help="Folder containing paired fq, fq.gz, fastq, and fastq.gz files. Program will recursively find paired reads", required=True, widget='DirChooser')
     required_args.add_argument('--Reference', help="Host Reference fasta or fasta.gz file", required=True, widget='FileChooser')
     required_args.add_argument('--LargeReference', help = "Use this option if your reference file is greater than 4 Gigabases", required=False, widget='BlockCheckbox', action='store_true', gooey_options={ 'checkbox_label': "Yes" })
-    required_args.add_argument('--OutputFolder', help="Output Folder", required=False, default='~/dehost_output/test')
+    required_args.add_argument('--OutputFolder', help="Output Folder", required=False, default=f"~/dehost_output/dehost_{now}")
 
     parser = cli.add_argument_group("Options", gooey_options={'show_border': True,'columns': 1})
     parser.add_argument('--threads', help="Number of threads. More is faster if your computer supports it", type=int, required=False, default=4)
@@ -40,6 +43,7 @@ def main():
         #print(rev_files[i])
 
         base = os.path.splitext(os.path.basename(for_files[i]))[0]
+        base = os.path.splitext(base)[0]
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
 

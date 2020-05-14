@@ -105,6 +105,9 @@ When you are finished running the workflow, exit out of your environment by runn
 ## What the code is actually doing
 A log of the commands being run are in the results directory under cmd.log. You can view what commands are being executed.
 
+## Large Reference Files
+SanitizeMe uses Minimap2 as the mapper. Minimap2 requires different options for reference files that contain less than 4 gigabases vs reference files that contain more than 4 gigabases. The `--LargeReference` options is required for reference files greater than 4 gigabases. The human reference genome is ~ 3 gigabases, so make sure that this option is not specified (default behavior) for genomes less than 4 gigabases. 
+
 ## Author
 Jiangwei Yao
 

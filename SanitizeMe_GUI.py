@@ -4,6 +4,7 @@ import sys
 import os
 import glob
 import re
+from datetime import date
 from gooey import Gooey, GooeyParser
 
 @Gooey(default_size=(750, 820), 
@@ -12,12 +13,15 @@ from gooey import Gooey, GooeyParser
         
 
 def main():
+
+    now = date.today()
+
     cli = GooeyParser(description="Remove Host Reads from Long Read, Single End, Fastq Files")
     required_args = cli.add_argument_group("Input Output", gooey_options={'show_border': True, 'columns': 1})
     required_args.add_argument('--InputFolder', help="Folder containing fastq files. Only files ending in .fq, .fg.gz, .fastq, and .fastq.gz will be processed", required=True, widget='DirChooser')
     required_args.add_argument('--Reference', help="Host Reference fasta or fasta.gz file", required=True, widget='FileChooser')
     required_args.add_argument('--LargeReference', help = "Use this option if your reference file is greater than 4 Gigabases", required=False, widget='BlockCheckbox', action='store_true', gooey_options={ 'checkbox_label': "Yes" })
-    required_args.add_argument('--OutputFolder', help="Output Folder", required=False, default='~/dehost_output/test')
+    required_args.add_argument('--OutputFolder', help="Output Folder", required=False, default=f"~/dehost_output/dehost_{now}")
 
     parser = cli.add_argument_group("Options", gooey_options={'show_border': True,'columns': 1})
     parser.add_argument('--threads', help="Number of threads. More is faster if your computer supports it", type=int, required=False, default=4)
@@ -46,6 +50,7 @@ def main():
     for j in range(0, len(files)):
         i = files[j]
         base = os.path.splitext(os.path.basename(i))[0]
+        base = os.path.splitext(base)[0]
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
 

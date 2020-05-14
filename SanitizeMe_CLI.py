@@ -5,13 +5,15 @@ import os
 import glob
 import re
 import argparse 
+from datetime import date
 
 def main():
+    now = date.today()
+
     cli = argparse.ArgumentParser()
-    
     cli.add_argument('-i', '--InputFolder', help="Folder containing fastq files. Only files ending in .fq, .fg.gz, .fastq, and .fastq.gz will be processed", required=True)
     cli.add_argument('-r', '--Reference', help="Host Reference fasta or fasta.gz file", required=True)
-    cli.add_argument('-o', '--OutputFolder', help="Output Folder. Default is ~/dehost_output/test", required=False, default='~/dehost_output/test')
+    cli.add_argument('-o', '--OutputFolder', help=f"Output Folder. Default is ~/dehost_output/dehost_{now}", required=False, default=f"~/dehost_output/dehost_{now}")
     cli.add_argument('--LargeReference', help = "Use this option if your reference file is greater than 4 Gigabases", required=False, action='store_true')
     cli.add_argument('-t', '--threads', help="Number of threads. Default is 4. More is faster if your computer supports it", type=int, required=False, default=4)
     method = cli.add_mutually_exclusive_group()
@@ -29,6 +31,7 @@ def main():
     for j in range(0, len(files)):
         i = files[j]
         base = os.path.splitext(os.path.basename(i))[0]
+        base = os.path.splitext(base)[0]
         #print(base)
         os.system(f"mkdir -p {OutputFolder}")
         if args.LargeReference:
