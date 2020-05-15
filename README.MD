@@ -2,7 +2,7 @@
 
 SanitizeMe is a GUI application (with an equivalent CLI) that takes fastq files, and removes reads mapping to a reference file from the fastq. The most obvious use is to remove the host contaminants from DNA sequencing. The GUI version requires direct access to a linux computer or X11 forwarding (I use VcXsrv). SanitizeMePaired is the sister application (with GUI and CLI versions) that processes paired end fastq files.
 
-![Image description](https://github.com/jiangweiyao/SanitizeMe/blob/master/SanitizeMePaired_Screenshot2.jpg)
+![Image description](https://github.com/CDCgov/SanitizeMe/blob/master/SanitizeMePaired_Screenshot2.jpg)
 
 ## Quick Installation via Conda and Usage:
 
