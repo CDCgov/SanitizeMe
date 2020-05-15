@@ -108,6 +108,9 @@ A log of the commands being run are in the results directory under cmd.log. You 
 ## Large Reference Files
 SanitizeMe uses Minimap2 as the mapper. Minimap2 requires different options for reference files that contain less than 4 gigabases vs reference files that contain more than 4 gigabases. The `--LargeReference` options is required for reference files greater than 4 gigabases. The human reference genome is ~ 3 gigabases, so make sure that this option is not specified (default behavior) for genomes less than 4 gigabases. 
 
+## System Resource
+8GB of memory is needed for the recommended human reference library. More memory will be needed if you use the Large Reference file option. 
+
 ## Author
 Jiangwei Yao
 
